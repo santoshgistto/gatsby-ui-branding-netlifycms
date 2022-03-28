@@ -1,0 +1,74 @@
+backend:
+  name: git-gateway
+  branch: master
+media_folder: static/assets
+public_folder: assets
+logo_url: https://pbs.twimg.com/profile_images/896132879150850049/6MkiWSHz_200x200.jpg
+
+collections:
+  - name: "branding" # Used in routes, e.g., /admin/collections/blog
+    label: "UI config" # Used in the UI
+    folder: "content" # The path to the folder where the markdown files are stored
+    extension: json
+    format: json
+    create: true # Allow users to create new markdown files.
+    fields: # The fields for front matter. You will need to modify fields according to your project.
+          - {name: "title", label: "App Name", widget: "string", default: "App Name"}
+          - {name: "primaryColor", label: "Primary color", widget: color,  picker: sketch}
+          - {name: "secondaryColor", widget: color, picker: twitter}
+          - label: "App Logo"
+            name: "applogo"
+            widget: 'image'
+      
+  - label: "Other Config"
+    name: "config"
+    delete: false
+    editor:
+      preview: true
+    files: 
+      - label: "App Ui Config"
+        name: "branding"
+        file: "src/pages/branding/branding.json"
+        format: "json"
+        fields: 
+          - {name: "title", label: "Title", widget: "string"}
+          - {name: "packagename", label: "Package name", widget: "string"}
+          - {name: "primaryColor", label: "Primary color", widget: color,  picker: github}
+          - {name: "Secondary color", widget: color, picker: github}
+          - label: "App Logo"
+            name: "applogo"
+            widget: 'image'
+      - label: "Other configuration"
+        name: "feature_flag"
+        file: "src/pages/branding/features.json" 
+        format: "json"
+        fields: 
+          - { name: "search_and_tag", label : "Search and Tag", widget: "boolean", default: true} 
+          - { name: "smart_cast", label: "Smart casting", widget: "boolean", default: true}
+          - { name: "localytics", label: "Localytics", widget: "boolean", default: true}
+          - { name: "bot", label: "Bot", widget: "boolean", default: true }
+          - {name: "slideshow", label: "SlideShow",  widget: "boolean", default: true}
+          - {name: "highlights", label: "Hightlights", widget: "boolean", default: true }
+  - label: "Settings"
+    name: "settings"
+    delete: false
+    editor:
+      preview: false
+    files:
+      - label: "Reports"
+        name: "report"
+        file: "src/pages/branding/report.json"
+        format: "json"
+        fields: 
+          - {name: "title", label: "Reports", widget: "string", default: "Report"}  
+      - label: "Apk Bundle"
+        name: "apk"
+        file: "src/pages/branding/apk.json"
+        format: "json"
+        fields:
+          - {name: "title", label: "Apk", widget: "string", default: "apk"}        
+
+       
+
+
+
